@@ -1,7 +1,7 @@
 import Head from "next/head"
-import { Header, Main, Footer } from "../styles/index"
+import { Header, Main, Footer } from "../styles"
 
-export default function Index() {
+export default function Home() {
 	return (
 		<>
 			<Head>
@@ -11,7 +11,7 @@ export default function Index() {
 			<Header></Header>
 
 			<Main>
-				<h1>oi</h1>
+				<h1>Index</h1>
 			</Main>
 
 			<Footer></Footer>
