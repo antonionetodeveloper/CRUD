@@ -36,7 +36,7 @@ export default function Home() {
 	async function createAccount() {
 		if (checkFields) {
 			setIsLoading(true)
-			const url = "http://localhost:3000"
+			const url = "https://crud-antonio-neto.vercel.app/"
 			await axios
 				.post(url + "/api/cadastro", {
 					name: name,
