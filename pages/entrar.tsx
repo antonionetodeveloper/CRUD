@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Main } from "../styles/entrar"
 import { Input } from "../components/input"
 import { Button } from "../components/button"
@@ -17,6 +17,7 @@ export default function Home() {
 	async function logIn() {
 		if (checkFields()) {
 			setIsLoading(true)
+
 			const url = "https://crud-antonio-neto.vercel.app/"
 			await axios
 				.post(url + "api/login", {

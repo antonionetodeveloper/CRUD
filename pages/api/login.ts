@@ -8,7 +8,6 @@ import { UserModel } from "../../models/UserModel"
 import md5 from "md5"
 import jwt from "jsonwebtoken"
 import { CORS } from "../../middlewares/cors"
-import { validateTokenJWT } from "../../middlewares/validateTokenJWT"
 
 const endPointLogin = async (
 	req: NextApiRequest,
@@ -31,7 +30,7 @@ const endPointLogin = async (
 			const token = jwt.sign({ _id: foundSingleUser._id }, JWT_KEY_TOKEN)
 			return res.status(200).json({
 				name: foundSingleUser.name,
-				lastName: foundSingleUser.lastName,
+				lastName: foundSingleUser.lasName,
 				email: foundSingleUser.email,
 				token,
 			})
@@ -42,4 +41,4 @@ const endPointLogin = async (
 	return res.status(405).json({ error: "Metodo não informado." })
 }
 
-export default CORS(validateTokenJWT(ConnectDB(endPointLogin)))
+export default CORS(ConnectDB(endPointLogin))
