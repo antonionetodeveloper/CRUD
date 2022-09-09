@@ -4,6 +4,8 @@ import type { RequisicaoCadastro } from "../../types/RequisicaoCadastro"
 import { UserModel } from "../../models/UserModel"
 import { ConnectDB } from "../../middlewares/conncetDB"
 import md5 from "md5"
+import { CORS } from "../../middlewares/cors"
+import { validateTokenJWT } from "../../middlewares/validateTokenJWT"
 
 const endPointCadastro = async (
 	req: NextApiRequest,
@@ -59,4 +61,4 @@ const endPointCadastro = async (
 		return res.status(406).json({ error: "Método inválido." })
 	}
 }
-export default ConnectDB(endPointCadastro)
+export default CORS(validateTokenJWT(ConnectDB(endPointCadastro)))
