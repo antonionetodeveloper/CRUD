@@ -4,4 +4,4 @@ module.exports = {
 	sigleQuote: false,
 	printWidth: 80,
 	tabWidth: 2,
-};
+}

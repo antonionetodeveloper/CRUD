@@ -2,9 +2,9 @@ import { useState } from "react"
 import styled from "styled-components"
 import validator from "validator"
 
-export const Input = (props) => {
-	const [email, setEmail] = useState(true)
-	function validateEmail(event) {
+export const Input = (props: any) => {
+	const [email, setEmail] = useState(true) as any
+	function validateEmail(event: any) {
 		var email = event.target.value
 
 		if (validator.isEmail(email)) {
@@ -20,9 +20,8 @@ export const Input = (props) => {
 		<Container isEmailValid={email} isAnEmail={props.isEmail}>
 			<div className="group">
 				<input
-					required=""
 					type={props.Type}
-					class="input"
+					className="input"
 					onChange={(e) => {
 						if (props.isEmail) {
 							props.comeBack(e.target.value), validateEmail(e)
@@ -38,7 +37,7 @@ export const Input = (props) => {
 	)
 }
 
-const Container = styled.div`
+const Container: any = styled.div`
 	/* From uiverse.io by @G4b413l */
 	.group {
 		position: relative;
@@ -46,7 +45,7 @@ const Container = styled.div`
 	.input {
 		font-size: 16px;
 		color: black;
-		color: ${(props) => {
+		color: ${(props: any) => {
 			if (props.isAnEmail) {
 				if (props.isEmailValid) {
 					return "black"

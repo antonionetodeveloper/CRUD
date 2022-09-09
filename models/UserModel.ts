@@ -9,5 +9,5 @@ const UserSchema = new Schema({
 	avatar: { type: String, required: false },
 })
 
-export const UserModel =
+export const UserModel: any =
 	mongoose.models.users || mongoose.model("users", UserSchema)
