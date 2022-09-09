@@ -19,7 +19,7 @@ export default function Home() {
 			setIsLoading(true)
 			const url = "https://crud-antonio-neto.vercel.app/"
 			await axios
-				.post(url + "/api/login", {
+				.post(url + "api/login", {
 					login: login,
 					password: password,
 				})
