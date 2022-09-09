@@ -1,5 +1,6 @@
 import Head from "next/head"
 import Link from "next/link"
+import axios from "axios"
 
 import { useState, useEffect } from "react"
 
@@ -20,8 +21,9 @@ export default function Home() {
 	const [passwordConfirm, setPasswordConfirm] = useState("")
 	const [passwordMatch, setPasswordMatch] = useState(false)
 
-	const [isReadyCreateAccount, setIsReady] = useState(false)
 	const [textError, setTextError] = useState("")
+
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		if (password == passwordConfirm) {
@@ -31,51 +33,66 @@ export default function Home() {
 		}
 	})
 
-	function createAccount() {
-		checkFields()
-	}
-	useEffect(() => {
-		if (isReadyCreateAccount) {
-			alert("Tudo certo!")
+	async function createAccount() {
+		if (checkFields) {
+			setIsLoading(true)
+			const url = "http://localhost:3000"
+			await axios
+				.post(url + "/api/cadastro", {
+					name: name,
+					lastName: lastName,
+					email: email,
+					login: login,
+					password: password,
+				})
+				.then(function (response) {
+					console.log(response)
+					window.location.href = url + "/entrar"
+				})
+				.catch(function (error) {
+					setTextError(error.response.data.error)
+				})
+
+			setIsLoading(false)
 		}
-	})
+	}
 
 	function checkFields() {
 		if (!passwordMatch) {
 			setTextError("As senhas não coincidem")
-			setIsReady(false)
+			return false
 		}
 		if (!isEmailValid) {
 			setTextError("O e-mail não é valido.")
-			setIsReady(false)
+			return false
 		}
 		if (password.length <= 7) {
 			setTextError("A senha deve ter mais de 7 caracteres")
-			setIsReady(false)
+			return false
 		}
 		if (passwordConfirm == "") {
 			setTextError('O campo "confirme sua senha" está vazio.')
-			setIsReady(false)
+			return false
 		}
 		if (password == "") {
 			setTextError('O campo "senha" está vazio.')
-			setIsReady(false)
+			return false
 		}
 		if (login == "") {
 			setTextError('O campo "login" está vazio.')
-			setIsReady(false)
+			return false
 		}
 		if (email == "") {
 			setTextError('O campo "email" está vazio.')
-			setIsReady(false)
+			return false
 		}
 		if (lastName == "") {
 			setTextError('O campo "sobrenome" está vazio.')
-			setIsReady(false)
+			return false
 		}
 		if (name == "") {
 			setTextError('O campo "nome" está vazio.')
-			setIsReady(false)
+			return false
 		}
 		if (
 			name != "" &&
@@ -88,7 +105,7 @@ export default function Home() {
 			isEmailValid &&
 			passwordMatch
 		) {
-			setIsReady(true)
+			return true
 		}
 	}
 
@@ -127,13 +144,14 @@ export default function Home() {
 						</div>
 						<Button
 							Text="Continuar"
+							isLoading={isLoading}
 							clicked={() => {
 								createAccount()
 							}}
 						/>
 					</form>
 					<Link href={"/entrar"}>
-						<a href="/entrar">Já tenho uma conta</a>
+						<a>Já tenho uma conta</a>
 					</Link>
 				</div>
 			</Main>

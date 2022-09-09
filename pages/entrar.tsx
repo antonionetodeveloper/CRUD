@@ -4,28 +4,40 @@ import { useEffect, useState } from "react"
 import { Main } from "../styles/entrar"
 import { Input } from "../components/input"
 import { Button } from "../components/button"
+const axios = require("axios")
 
 export default function Home() {
 	const [login, setLogin] = useState("")
 	const [password, setPassword] = useState("")
 
-	const [isReadyToLogIn, setIsReady] = useState(false)
 	const [textError, setTextError] = useState("")
 
-	function logIn() {
-		checkFields()
-		// parei aqui.
-		// obs: /api/cadastro e /api/login estão ok com o db.
-	}
-	useEffect(() => {
-		if (isReadyToLogIn) {
-			alert("Tudo certo!")
+	const [isLoading, setIsLoading] = useState(false)
+
+	async function logIn() {
+		if (checkFields()) {
+			setIsLoading(true)
+			const url = "http://localhost:3000"
+			await axios
+				.post(url + "/api/login", {
+					login: login,
+					password: password,
+				})
+				.then(function (response) {
+					console.log(response)
+					window.location.href = url + "/home"
+				})
+				.catch(function (error) {
+					setTextError(error.response.data.error)
+				})
+
+			setIsLoading(false)
 		}
-	})
+	}
 
 	function checkFields() {
 		if (login != "" && password != "") {
-			setIsReady(true)
+			return true
 		} else {
 			if (password == "") {
 				setTextError('O campo "password" está vazio')
@@ -33,6 +45,7 @@ export default function Home() {
 			if (login == "") {
 				setTextError('O campo "login" está vazio')
 			}
+			return false
 		}
 	}
 
@@ -51,6 +64,7 @@ export default function Home() {
 						<Input Text="Senha" Type="password" comeBack={setPassword} />
 						<Button
 							Text="Continuar"
+							isLoading={isLoading}
 							clicked={() => {
 								logIn()
 							}}
