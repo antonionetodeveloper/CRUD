@@ -38,7 +38,7 @@ export default function Home() {
 			setIsLoading(true)
 			const url = "https://crud-antonio-neto.vercel.app/"
 			await axios
-				.post(url + "/api/cadastro", {
+				.post(url + "api/cadastro", {
 					name: name,
 					lastName: lastName,
 					email: email,
