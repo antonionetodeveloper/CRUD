@@ -7,6 +7,7 @@ export const CORS =
 	async (req: NextApiRequest, res: NextApiResponse<RegularAnswer>) => {
 		try {
 			await NextCors(req, res, {
+				AccessControlAllowOrigin: "*",
 				origin: "*",
 				methods: ["GET", "POST", "PUT"],
 				optionsSuccessStatus: 200, // navegadores antigos dao problema quando se retorna 204
