@@ -1,15 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { ConnectDB } from "../../middlewares/conncetDB"
-import { CORS } from "../../middlewares/cors"
 import { validateTokenJWT } from "../../middlewares/validateTokenJWT"
+import { UserModel } from "../../models/UserModel"
 import { RegularAnswer } from "../../types/RegularAnswer"
 
-const userEndpoint = (
+const userEndpoint = async (
 	req: NextApiRequest,
-	res: NextApiResponse<RegularAnswer>,
+	res: NextApiResponse<RegularAnswer | any>,
 ) => {
-	if (req.method == "GET") {
+	try {
+		const { userId } = req?.query
+		const user = await UserModel.findById(userId)
+		user.login = null
+		user.password = null
+		return res.status(200).json(user)
+	} catch (error) {
+		console.log(error)
+		return res.status(400).json({ error: "Usuário não foi informado." })
 	}
 }
 
-export default CORS(validateTokenJWT(ConnectDB(userEndpoint)))
+export default validateTokenJWT(ConnectDB(userEndpoint))

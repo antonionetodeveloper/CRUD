@@ -4,7 +4,8 @@ import styled from "styled-components"
 export const Header = styled.header``
 
 export const Main = styled.main`
-	h1 {
+	h1,
+	p {
 		color: white;
 		text-align: center;
 	}
