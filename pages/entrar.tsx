@@ -1,15 +1,12 @@
 import Head from "next/head"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Main } from "../styles/entrar"
 import { Input } from "../components/input"
 import { Button } from "../components/button"
 import axios from "axios"
 
 export default function Entrar() {
-	// fazer o enter dar submit
-	// ajeitar as bolinhas do laoding
-
 	const [login, setLogin] = useState("")
 	const [password, setPassword] = useState("")
 
@@ -54,13 +51,20 @@ export default function Entrar() {
 		}
 	}
 
+	const keyPressed = (event: any) => {
+		if (event.key == "Enter") {
+			event.preventDefault()
+			logIn()
+		}
+	}
+
 	return (
 		<>
 			<Head>
 				<title>Login</title>
 			</Head>
 
-			<Main>
+			<Main onKeyDown={keyPressed}>
 				<div className="container">
 					<form method="POST" onSubmit={() => {}}>
 						<h1>Entrar</h1>

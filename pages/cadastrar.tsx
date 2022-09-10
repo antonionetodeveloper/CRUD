@@ -109,13 +109,20 @@ export default function Cadastrar() {
 		}
 	}
 
+	const keyPressed = (event: any) => {
+		if (event.key == "Enter") {
+			event.preventDefault()
+			createAccount()
+		}
+	}
+
 	return (
 		<>
 			<Head>
 				<title>Cadastro</title>
 			</Head>
 
-			<Main>
+			<Main onKeyDown={keyPressed}>
 				<div className="container">
 					<form method="POST" onSubmit={() => {}}>
 						<h1>Cadastrar</h1>

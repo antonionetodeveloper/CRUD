@@ -54,8 +54,8 @@ const Container = styled.button`
 		margin-left: 1em;
 		position: absolute;
 		display: flex;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
 		height: 2.2em;
 		width: 2.2em;
 		border-radius: 0.7em;
