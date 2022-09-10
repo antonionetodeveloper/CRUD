@@ -7,7 +7,6 @@ export const CORS =
 	async (req: NextApiRequest, res: NextApiResponse<RegularAnswer>) => {
 		try {
 			await NextCors(req, res, {
-				AccessControlAllowOrigin: "*",
 				origin: "*",
 				methods: ["GET", "POST", "PUT"],
 				optionsSuccessStatus: 200, // navegadores antigos dao problema quando se retorna 204
@@ -18,6 +17,6 @@ export const CORS =
 			console.log("Erro ao tratar a politica de CORS:", e)
 			return res
 				.status(500)
-				.json({ error: "Ocorreu erro ao tratar a politica de CORS" })
+				.json({ error: "Ocorreu erro ao tratar a politica de CORS." })
 		}
 	}

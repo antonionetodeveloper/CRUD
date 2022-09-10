@@ -21,24 +21,28 @@ const endPointLogin = async (
 	if (req.method === "POST") {
 		const { login, password } = req.body as RequisicaoLogin
 
-		const foundUsers = await UserModel.find({
-			login: login,
-			password: md5(password),
-		})
-		if (foundUsers && foundUsers.length > 0) {
-			const foundSingleUser = foundUsers[0]
-			const token = jwt.sign({ _id: foundSingleUser._id }, JWT_KEY_TOKEN)
-			return res.status(200).json({
-				name: foundSingleUser.name,
-				lastName: foundSingleUser.lasName,
-				email: foundSingleUser.email,
-				token,
+		try {
+			const foundUsers = await UserModel.find({
+				login: login,
+				password: md5(password),
 			})
-		} else {
-			res.status(400).json({ error: "Usuário ou senha inválidos." })
-		}
-	}
-	return res.status(405).json({ error: "Metodo não informado." })
-}
 
+			if (foundUsers && foundUsers.length > 0) {
+				const foundSingleUser = foundUsers[0]
+				const token = jwt.sign({ _id: foundSingleUser._id }, JWT_KEY_TOKEN)
+				return res.status(200).json({
+					name: foundSingleUser.name,
+					lastName: foundSingleUser.lasName,
+					email: foundSingleUser.email,
+					token,
+				})
+			} else {
+				return res.status(400).json({ error: "Usuário ou senha inválidos." })
+			}
+		} catch (error) {
+			console.log(error)
+		}
+		return res.status(405).json({ error: "Metodo não informado." })
+	}
+}
 export default CORS(ConnectDB(endPointLogin))

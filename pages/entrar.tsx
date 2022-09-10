@@ -16,8 +16,9 @@ export default function Home() {
 
 	async function logIn() {
 		if (checkFields()) {
-			setIsLoading(true)
+			console.log("entrou aqui")
 
+			setIsLoading(true)
 			const url = "https://crud-antonio-neto.vercel.app/"
 			await axios
 				.post(url + "api/login", {
@@ -26,7 +27,7 @@ export default function Home() {
 				})
 				.then(function (response) {
 					console.log(response)
-					window.location.href = url + "/home"
+					window.location.href = url + "home"
 				})
 				.catch(function (error) {
 					setTextError(error.response.data.error)
