@@ -8,7 +8,7 @@ import { Main } from "../styles/cadastrar"
 import { Input } from "../components/input"
 import { Button } from "../components/button"
 
-export default function Home() {
+export default function Cadastrar() {
 	const [name, setName] = useState("")
 	const [lastName, setLastName] = useState("")
 
@@ -34,7 +34,7 @@ export default function Home() {
 	})
 
 	async function createAccount() {
-		if (checkFields) {
+		if (checkFields()) {
 			setIsLoading(true)
 			const url = "https://crud-antonio-neto.vercel.app/"
 			await axios
@@ -62,6 +62,18 @@ export default function Home() {
 			setTextError("As senhas não coincidem")
 			return false
 		}
+		if (name == "") {
+			setTextError('O campo "nome" está vazio.')
+			return false
+		}
+		if (lastName == "") {
+			setTextError('O campo "sobrenome" está vazio.')
+			return false
+		}
+		if (email == "") {
+			setTextError('O campo "email" está vazio.')
+			return false
+		}
 		if (!isEmailValid) {
 			setTextError("O e-mail não é valido.")
 			return false
@@ -74,24 +86,12 @@ export default function Home() {
 			setTextError('O campo "confirme sua senha" está vazio.')
 			return false
 		}
-		if (password == "") {
-			setTextError('O campo "senha" está vazio.')
-			return false
-		}
 		if (login == "") {
 			setTextError('O campo "login" está vazio.')
 			return false
 		}
-		if (email == "") {
-			setTextError('O campo "email" está vazio.')
-			return false
-		}
-		if (lastName == "") {
-			setTextError('O campo "sobrenome" está vazio.')
-			return false
-		}
-		if (name == "") {
-			setTextError('O campo "nome" está vazio.')
+		if (password == "") {
+			setTextError('O campo "senha" está vazio.')
 			return false
 		}
 		if (
@@ -150,9 +150,14 @@ export default function Home() {
 							}}
 						/>
 					</form>
-					<Link href={"/entrar"}>
-						<a>Já tenho uma conta</a>
-					</Link>
+					<div className="navigation">
+						<Link href={"/"}>
+							<a href="/">Voltar para o início</a>
+						</Link>
+						<Link href={"/entrar"}>
+							<a>Já tenho uma conta</a>
+						</Link>
+					</div>
 				</div>
 			</Main>
 		</>

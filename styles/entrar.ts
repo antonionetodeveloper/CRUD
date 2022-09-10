@@ -18,8 +18,8 @@ export const Main = styled.main`
 		border-radius: 2vw;
 
 		form {
-			width: 40vw;
-			height: 50vh;
+			width: 45vw;
+			height: 65vh;
 
 			display: flex;
 			flex-direction: column;
@@ -38,12 +38,20 @@ export const Main = styled.main`
 			}
 		}
 
-		a {
-			color: #5a4df0;
+		div.navigation {
 			display: flex;
 			justify-content: center;
-			position: relative;
-			bottom: 1.5vh;
+			gap: 5vw;
+			a {
+				color: #5a4df0;
+				font-style: italic;
+				font-weight: 500;
+				display: flex;
+				justify-content: center;
+				position: relative;
+				bottom: 2vh;
+				margin-bottom: 1vw;
+			}
 		}
 	}
 `

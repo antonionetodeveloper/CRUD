@@ -47,12 +47,20 @@ export const Main = styled.main`
 			}
 		}
 
-		a {
-			color: #5a4df0;
+		div.navigation {
 			display: flex;
 			justify-content: center;
-			position: relative;
-			bottom: 2vh;
+			gap: 2vw;
+			a {
+				color: #5a4df0;
+				font-style: italic;
+				font-weight: 500;
+				display: flex;
+				justify-content: center;
+				position: relative;
+				bottom: 2vh;
+				margin-bottom: 1vw;
+			}
 		}
 	}
 `

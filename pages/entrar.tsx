@@ -4,9 +4,12 @@ import { useState } from "react"
 import { Main } from "../styles/entrar"
 import { Input } from "../components/input"
 import { Button } from "../components/button"
-const axios = require("axios")
+import axios from "axios"
 
-export default function Home() {
+export default function Entrar() {
+	// fazer o enter dar submit
+	// ajeitar as bolinhas do laoding
+
 	const [login, setLogin] = useState("")
 	const [password, setPassword] = useState("")
 
@@ -72,9 +75,14 @@ export default function Home() {
 							}}
 						/>
 					</form>
-					<Link href={"/cadastrar"}>
-						<a href="/cadastrar">Criar uma conta</a>
-					</Link>
+					<div className="navigation">
+						<Link href={"/"}>
+							<a href="/">Voltar para o início</a>
+						</Link>
+						<Link href={"/cadastrar"}>
+							<a href="/cadastrar">Criar uma conta</a>
+						</Link>
+					</div>
 				</div>
 			</Main>
 		</>
