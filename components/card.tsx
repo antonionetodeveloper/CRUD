@@ -2,7 +2,7 @@ import Link from "next/link"
 import styled from "styled-components"
 import { Button } from "./button"
 
-export const Card = (props) => {
+export const Card = (props: any) => {
 	return (
 		<Container>
 			<h1>{props.title}</h1>
@@ -14,7 +14,7 @@ export const Card = (props) => {
 					</a>
 				</Link>
 			) : (
-				<></>
+				<span></span>
 			)}
 		</Container>
 	)
@@ -25,18 +25,21 @@ const Container = styled.section`
 	border-radius: 2vw;
 
 	display: flex;
+	justify-content: space-between;
 	flex-direction: column;
 	align-items: center;
 
+	box-shadow: rgb(0 0 0 / 20%) 0px 0px 15px;
+
 	h1 {
-		font-size: 3vw;
+		font-size: 2vw;
 	}
 
 	text {
 		display: flex;
 		margin: auto;
 		margin: 3vw;
-		font-size: 2vw;
+		font-size: 1.7vw;
 		text-align: justify;
 	}
 	a {

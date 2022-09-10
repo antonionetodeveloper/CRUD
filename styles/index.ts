@@ -25,22 +25,25 @@ export const Header = styled.header`
 `
 
 export const Main = styled.main`
-	margin-top: 10vw;
+	margin-top: 5vw;
 	.group1 {
 		margin: auto;
-		width: 92vw;
-		height: 25vw;
+		width: 85vw;
+		height: 30vw;
+		section {
+			padding: 2.5vw;
+		}
 	}
 	.group2 {
 		margin: 0px;
-		margin-top: 5vw;
 		display: flex;
 		justify-content: center;
-		gap: 1.5vw;
+		gap: 5vw;
 
 		section {
-			width: 45vw;
-			height: 40vw;
+			width: 35vw;
+			padding: 2.5vw;
+			height: 30vw;
 		}
 	}
 	.group3 {
@@ -49,11 +52,12 @@ export const Main = styled.main`
 		margin-bottom: 10vw;
 		display: flex;
 		justify-content: center;
-		gap: 1.5vw;
+		gap: 5vw;
 
 		section {
-			width: 45vw;
-			height: 40vw;
+			width: 35vw;
+			padding: 2.5vw;
+			height: 30vw;
 		}
 	}
 `
