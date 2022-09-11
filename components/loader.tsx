@@ -2,7 +2,7 @@ import React from "react"
 import ReactLoading from "react-loading"
 import styled from "styled-components"
 
-export const Loader = () => (
+export const Loader: any = (props) => (
 	<Container>
 		<ReactLoading
 			type={"cubes"}

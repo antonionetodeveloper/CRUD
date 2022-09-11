@@ -3,11 +3,11 @@ import { Loader } from "../components/loader"
 
 export const Button = (props) => {
 	return (
-		<Container type="button" onClick={props.clicked}>
+		<Container type="button" onClick={props.clicked} wrongButton={props.Wrong}>
 			{props.Text}
 			<div className="icon">
 				{props.isLoading ? (
-					<Loader />
+					<Loader/>
 				) : (
 					<svg
 						height="24"
@@ -28,10 +28,16 @@ export const Button = (props) => {
 	)
 }
 
-const Container = styled.button`
+const Container: any = styled.button`
 	/* From uiverse.io by @adamgiebl */
 	& {
-		background: #9e96f2;
+		background-color: ${(props: any): any => {
+			if (props.wrongButton) {
+				return "#f00"
+			} else {
+				return "#9e96f2"
+			}
+		}};
 		color: white;
 		font-family: inherit;
 		padding: 0.35em;
@@ -43,7 +49,13 @@ const Container = styled.button`
 		letter-spacing: 0.05em;
 		display: flex;
 		align-items: center;
-		box-shadow: inset 0 0 1.6em -0.6em #9e96f2;
+		box-shadow: inset 0 0 1.6em -0.6em ${(props: any): any => {
+				if (props.wrongButton) {
+					return "#f00"
+				} else {
+					return "#9e96f2"
+				}
+			}};
 		overflow: hidden;
 		position: relative;
 		height: 2.8em;
@@ -59,7 +71,14 @@ const Container = styled.button`
 		height: 2.2em;
 		width: 2.2em;
 		border-radius: 0.7em;
-		box-shadow: 0.1em 0.1em 0.6em 0.2em #9e96f2;
+		box-shadow: 0.1em 0.1em 0.6em 0.2em
+			${(props: any): any => {
+				if (props.wrongButton) {
+					return "#f00"
+				} else {
+					return "#9e96f2"
+				}
+			}};
 		right: 0.3em;
 		transition: all 0.3s;
 	}
@@ -72,7 +91,13 @@ const Container = styled.button`
 	& .icon svg {
 		width: 1.1em;
 		transition: transform 0.3s;
-		color: #9e96f2;
+		color: ${(props: any): any => {
+			if (props.wrongButton) {
+				return "#f00"
+			} else {
+				return "#9e96f2"
+			}
+		}};
 	}
 	&:hover .icon svg {
 		transform: translateX(0.1em);

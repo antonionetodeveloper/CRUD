@@ -16,8 +16,6 @@ export default function Entrar() {
 
 	async function logIn() {
 		if (checkFields()) {
-			console.log("entrou aqui")
-
 			setIsLoading(true)
 			const url = "https://crud-antonio-neto.vercel.app/"
 			await axios
@@ -26,8 +24,9 @@ export default function Entrar() {
 					password: password,
 				})
 				.then(function (response) {
-					console.log(response)
-					window.location.href = url + "home"
+					const token = response.data.token
+					localStorage.setItem("token", token)
+					window.location.href = "http://localhost:3000/" + "home"
 				})
 				.catch(function (error) {
 					setTextError(error.response.data.error)
