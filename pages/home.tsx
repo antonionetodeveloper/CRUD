@@ -25,7 +25,7 @@ export default function Home() {
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
 			},
 		})
-		const url = "http://localhost:3000/"
+		const url = "https://crud-antonio-neto.vercel.app/"
 		await reqInstance
 			.get(url + "api/usuario")
 			.then((response) => {
