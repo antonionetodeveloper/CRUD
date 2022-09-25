@@ -1,14 +1,20 @@
 import axios from "axios"
 import Head from "next/head"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "../components/button"
 import { CardInfo } from "../components/cardInfo"
 import { Header, Main, Footer } from "../styles/home"
 
 export default function Home() {
 	// tentar usar o getStaticProps
-	getInformation()
+
+	useEffect(() => {
+		if (window) {
+			getInformation()
+		}
+	}, [])
+
 	const [name, setName] = useState("")
 	const [lastName, setLastName] = useState("")
 	const [email, setEmail] = useState("")
