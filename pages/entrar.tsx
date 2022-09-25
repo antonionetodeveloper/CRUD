@@ -26,7 +26,7 @@ export default function Entrar() {
 				.then(function (response) {
 					const token = response.data.token
 					localStorage.setItem("token", token)
-					window.location.href = "http://localhost:3000/" + "home"
+					window.location.href = url + "home"
 				})
 				.catch(function (error) {
 					setTextError(error.response.data.error)
