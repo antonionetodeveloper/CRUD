@@ -4,23 +4,53 @@ import styled from "styled-components"
 export const CardInfo = (props: any) => {
 	return (
 		<Container>
-			<h2>Informações pessoais</h2>
+			<h2>{props.title}</h2>
 			<div className="Container">
-				<Changer
-					field={"Nome:"}
-					changer={props.name}
-					redirectTo={"/alterar-nome"}
-				/>
-				<Changer
-					field={"Sobrenome:"}
-					changer={props.lastName}
-					redirectTo={"/alterar-sobrenome"}
-				/>
-				<Changer
-					field={"Email:"}
-					changer={props.email}
-					redirectTo={"/alterar-email"}
-				/>
+				{props.name ? (
+					<Changer
+						field={"Nome:"}
+						changer={props.name}
+						redirectTo={"/alterar-nome"}
+					/>
+				) : (
+					<></>
+				)}
+				{props.lastName ? (
+					<Changer
+						field={"Sobrenome:"}
+						changer={props.lastName}
+						redirectTo={"/alterar-sobrenome"}
+					/>
+				) : (
+					<></>
+				)}
+				{props.email ? (
+					<Changer
+						field={"Email:"}
+						changer={props.email}
+						redirectTo={"/alterar-email"}
+					/>
+				) : (
+					<></>
+				)}
+				{props.login ? (
+					<Changer
+						field={"Login:"}
+						changer={props.login}
+						redirectTo={"/alterar-login"}
+					/>
+				) : (
+					<></>
+				)}
+				{props.pass ? (
+					<Changer
+						field={"Senha:"}
+						changer={props.pass}
+						redirectTo={"/alterar-senha"}
+					/>
+				) : (
+					<></>
+				)}
 			</div>
 		</Container>
 	)

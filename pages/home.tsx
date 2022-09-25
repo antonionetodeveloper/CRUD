@@ -29,7 +29,6 @@ export default function Home() {
 		await reqInstance
 			.get(url + "api/usuario")
 			.then((response) => {
-				console.log(response)
 				setEmail(response.data.email)
 				setLastName(response.data.lastName)
 				setName(response.data.name)
@@ -67,8 +66,17 @@ export default function Home() {
 			</Header>
 
 			<Main>
-				<CardInfo name={name} lastName={lastName} email={email} />
-				<CardInfo info={name} />
+				<CardInfo
+					title={"Informações pessoais"}
+					name={name}
+					lastName={lastName}
+				/>
+				<CardInfo
+					title={"Informações confidênciais"}
+					email={email}
+					login={"oculto ..."}
+					pass={"oculto ..."}
+				/>
 			</Main>
 		</>
 	)
