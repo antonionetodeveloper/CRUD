@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import type { NextApiRequest, NextApiResponse } from "next"
 import { ConnectDB } from "../../middlewares/conncetDB"
 import { validateTokenJWT } from "../../middlewares/validateTokenJWT"
@@ -6,7 +7,7 @@ import { RegularAnswer } from "../../types/RegularAnswer"
 
 const userEndpoint = async (
 	req: NextApiRequest,
-	res: NextApiResponse<RegularAnswer | any>,
+	res: NextApiResponse<RegularAnswer>,
 ) => {
 	try {
 		const { userId } = req?.query

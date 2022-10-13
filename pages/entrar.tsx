@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Head from "next/head"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Main } from "../styles/entrar"
 import { Input } from "../components/input"
 import { Button } from "../components/button"
@@ -50,7 +51,7 @@ export default function Entrar() {
 		}
 	}
 
-	const keyPressed = (event: any) => {
+	const keyPressed = (event) => {
 		if (event.key == "Enter") {
 			event.preventDefault()
 			logIn()

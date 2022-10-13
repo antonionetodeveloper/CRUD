@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { Button } from "../components/button"
 import { CardInfo } from "../components/cardInfo"
-import { Header, Main, Footer } from "../styles/home"
+import { Header, Main } from "../styles/home"
 
 export default function Home() {
 	// tentar usar o getStaticProps
@@ -20,7 +20,7 @@ export default function Home() {
 	const [email, setEmail] = useState("")
 
 	async function getInformation() {
-		let reqInstance = axios.create({
+		const reqInstance = axios.create({
 			headers: {
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
 			},

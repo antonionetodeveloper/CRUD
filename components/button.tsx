@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components"
 import { Loader } from "../components/loader"
 
@@ -7,7 +8,7 @@ export const Button = (props) => {
 			{props.Text}
 			<div className="icon">
 				{props.isLoading ? (
-					<Loader/>
+					<Loader />
 				) : (
 					<svg
 						height="24"

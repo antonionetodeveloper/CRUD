@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Head from "next/head"
 import Link from "next/link"
 import axios from "axios"
@@ -109,7 +110,7 @@ export default function Cadastrar() {
 		}
 	}
 
-	const keyPressed = (event: any) => {
+	const keyPressed = (event) => {
 		if (event.key == "Enter") {
 			event.preventDefault()
 			createAccount()

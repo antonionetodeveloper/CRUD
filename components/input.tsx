@@ -1,10 +1,12 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-var */
 import { useState } from "react"
 import styled from "styled-components"
 import validator from "validator"
 
-export const Input = (props: any) => {
-	const [email, setEmail] = useState(true) as any
-	function validateEmail(event: any) {
+export const Input = (props) => {
+	const [email, setEmail] = useState(true)
+	function validateEmail(event) {
 		var email = event.target.value
 
 		if (validator.isEmail(email)) {

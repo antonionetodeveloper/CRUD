@@ -64,7 +64,7 @@ const endPointCadastro = async (
 		} else {
 			return res.status(406).json({ error: "Método inválido." })
 		}
-	} catch (e: any) {
+	} catch (e) {
 		return res.status(400).json({ error: e.toString() })
 	}
 }

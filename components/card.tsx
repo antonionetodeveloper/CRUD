@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import Link from "next/link"
 import styled from "styled-components"
 import { Button } from "./button"
 
-export const Card = (props: any) => {
+export const Card = (props) => {
 	return (
 		<Container>
 			<h1>{props.title}</h1>
