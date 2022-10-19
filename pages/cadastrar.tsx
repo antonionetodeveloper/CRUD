@@ -37,7 +37,7 @@ export default function Cadastrar() {
 	async function createAccount() {
 		if (checkFields()) {
 			setIsLoading(true)
-			const url = "https://crud-antonio-neto.vercel.app"
+			const url = "https://crud-antonio-neto.vercel.app/"
 			await axios
 				.post(url + "api/cadastro", {
 					name: name,
@@ -49,7 +49,7 @@ export default function Cadastrar() {
 				})
 				.then(function (response) {
 					console.log(response)
-					window.location.href = url + "/entrar"
+					window.location.href = url + "entrar"
 				})
 				.catch(function (error) {
 					console.log(error)
