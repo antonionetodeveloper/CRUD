@@ -9,15 +9,16 @@ import { Header, Main } from "../styles/home"
 export default function Home() {
 	// tentar usar o getStaticProps
 
+	const [name, setName] = useState("")
+	const [lastName, setLastName] = useState("")
+	const [email, setEmail] = useState("")
+	const [security, setSecurity] = useState("Desativado")
+
 	useEffect(() => {
 		if (window) {
 			getInformation()
 		}
 	}, [])
-
-	const [name, setName] = useState("")
-	const [lastName, setLastName] = useState("")
-	const [email, setEmail] = useState("")
 
 	async function getInformation() {
 		const reqInstance = axios.create({
@@ -25,13 +26,17 @@ export default function Home() {
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
 			},
 		})
-		const url = "https://crud-antonio-neto.vercel.app/"
+		//const url = "https://crud-antonio-neto.vercel.app/"
+		const url = "http://localhost:3000/"
 		await reqInstance
 			.get(url + "api/usuario")
 			.then((response) => {
 				setEmail(response.data.email)
 				setLastName(response.data.lastName)
 				setName(response.data.name)
+				if (response.data.security != "nothing") {
+					setSecurity("Ativado")
+				}
 			})
 			.catch((error) => {
 				console.log(error)
@@ -74,8 +79,9 @@ export default function Home() {
 				<CardInfo
 					title={"Informações confidênciais"}
 					email={email}
-					login={"oculto ..."}
-					pass={"oculto ..."}
+					security={security}
+					login={"Oculto ..."}
+					pass={"Oculto ..."}
 				/>
 			</Main>
 		</>

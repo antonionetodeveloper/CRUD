@@ -11,7 +11,7 @@ export const CardInfo = (props) => {
 					<Changer
 						field={"Nome:"}
 						changer={props.name}
-						redirectTo={"/alterar-nome"}
+						redirectTo={"/configuracoes/alterar-nome"}
 					/>
 				) : (
 					<></>
@@ -20,7 +20,7 @@ export const CardInfo = (props) => {
 					<Changer
 						field={"Sobrenome:"}
 						changer={props.lastName}
-						redirectTo={"/alterar-sobrenome"}
+						redirectTo={"/configuracoes/alterar-sobrenome"}
 					/>
 				) : (
 					<></>
@@ -29,7 +29,16 @@ export const CardInfo = (props) => {
 					<Changer
 						field={"Email:"}
 						changer={props.email}
-						redirectTo={"/alterar-email"}
+						redirectTo={"/configuracoes/alterar-email"}
+					/>
+				) : (
+					<></>
+				)}
+				{props.security ? (
+					<Changer
+						field={"Segurança:"}
+						changer={props.security}
+						redirectTo={"/configuracoes/alterar-seguranca"}
 					/>
 				) : (
 					<></>
@@ -38,7 +47,7 @@ export const CardInfo = (props) => {
 					<Changer
 						field={"Login:"}
 						changer={props.login}
-						redirectTo={"/alterar-login"}
+						redirectTo={"/configuracoes/alterar-login"}
 					/>
 				) : (
 					<></>
@@ -47,7 +56,7 @@ export const CardInfo = (props) => {
 					<Changer
 						field={"Senha:"}
 						changer={props.pass}
-						redirectTo={"/alterar-senha"}
+						redirectTo={"/configuracoes/alterar-senha"}
 					/>
 				) : (
 					<></>
@@ -70,7 +79,7 @@ const Changer = (props) => {
 
 const Container = styled.section`
 	width: 30vw;
-	padding: 5vw;
+	padding: 4vw;
 	height: auto;
 
 	display: flex;
@@ -81,10 +90,11 @@ const Container = styled.section`
 	box-shadow: rgb(0 0 0 / 20%) 0px 0px 15px;
 
 	h2 {
+		margin: 0px;
 		font-size: 2vw;
 		font-weight: 900;
 		text-align: center;
-		padding-bottom: 5vw;
+		padding-bottom: 3vw;
 	}
 
 	.Container {
@@ -97,6 +107,7 @@ const Container = styled.section`
 			width: 35vw;
 
 			display: grid;
+			justify-content: center;
 			grid-template-columns: auto auto auto;
 			gap: 1vw;
 
@@ -108,13 +119,14 @@ const Container = styled.section`
 			.changer {
 				font-weight: 500;
 				height: auto;
-				max-width: 15vw;
+				width: 10vw;
 				word-wrap: break-word;
 			}
 
 			a {
 				color: #9e96f2;
 				font-weight: 700;
+				width: 10vw;
 				display: flex;
 				justify-content: end;
 			}
