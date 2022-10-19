@@ -43,7 +43,8 @@ export default function Cadastrar() {
 					name: name,
 					lastName: lastName,
 					email: email,
-					login: login,
+					security: "nothing",
+					login2: login,
 					password: password,
 				})
 				.then(function (response) {
@@ -51,6 +52,7 @@ export default function Cadastrar() {
 					window.location.href = url + "/entrar"
 				})
 				.catch(function (error) {
+					console.log(error)
 					setTextError(error.response.data.error)
 				})
 

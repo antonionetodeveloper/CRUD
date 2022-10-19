@@ -55,7 +55,8 @@ const endPointCadastro = async (
 				name: user.name,
 				lastName: user.lastName,
 				email: user.email,
-				login: user.login,
+				security: user.security,
+				login2: user.login,
 				password: md5(user.password),
 			}
 
