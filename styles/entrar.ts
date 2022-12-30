@@ -13,7 +13,7 @@ export const Main = styled.main`
 			rgb(255 255 255 / 60%) -5px -10px 16px;
 	}
 
-	div {
+	.container {
 		background-color: white;
 		border-radius: 2vw;
 
@@ -38,7 +38,7 @@ export const Main = styled.main`
 			}
 		}
 
-		div.navigation {
+		.navigation {
 			display: flex;
 			justify-content: center;
 			gap: 5vw;

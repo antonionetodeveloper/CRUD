@@ -48,6 +48,7 @@ export const CardInfo = (props) => {
 						field={"Login:"}
 						changer={props.login}
 						redirectTo={"/configuracoes/alterar-login"}
+						allowedToChange={props.security}
 					/>
 				) : (
 					<></>
@@ -57,6 +58,7 @@ export const CardInfo = (props) => {
 						field={"Senha:"}
 						changer={props.pass}
 						redirectTo={"/configuracoes/alterar-senha"}
+						allowedToChange={props.security}
 					/>
 				) : (
 					<></>
@@ -70,9 +72,24 @@ const Changer = (props) => {
 		<div>
 			<span className="title">{props.field}</span>
 			<span className="changer">{props.changer}</span>
-			<Link href={props.redirectTo}>
-				<a href={props.redirectTo}>Mudar</a>
-			</Link>
+			{props.allowedToChange == "Desativado" ? (
+				<Link href="#">
+					<a
+						href="#"
+						onClick={() => {
+							alert(
+								'Habilite a "Segurança" de sua conta antes de mudar essa informação',
+							)
+						}}
+					>
+						Mudar
+					</a>
+				</Link>
+			) : (
+				<Link href={props.redirectTo}>
+					<a href={props.redirectTo}>Mudar</a>
+				</Link>
+			)}
 		</div>
 	)
 }

@@ -5,6 +5,7 @@ import NProgress from "nprogress"
 import "nprogress/nprogress.css"
 import { ThemeProvider, DefaultTheme } from "styled-components"
 import GlobalStyle from "../styles/GlobalStyle"
+import { AuthProvider } from "./context/auth"
 
 const theme: DefaultTheme = {
 	colors: {
@@ -43,10 +44,12 @@ export default function App({ Component, pageProps }: AppProps) {
 				href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 				rel="stylesheet"
 			/>
-			<ThemeProvider theme={theme}>
-				<GlobalStyle />
-				<Component {...pageProps} />
-			</ThemeProvider>
+			<AuthProvider>
+				<ThemeProvider theme={theme}>
+					<GlobalStyle />
+					<Component {...pageProps} />
+				</ThemeProvider>
+			</AuthProvider>
 		</>
 	)
 }
