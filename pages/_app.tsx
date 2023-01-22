@@ -1,10 +1,12 @@
 import type { AppProps } from "next/app"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
+
 import NProgress from "nprogress"
 import "nprogress/nprogress.css"
 import { ThemeProvider, DefaultTheme } from "styled-components"
 import GlobalStyle from "../styles/GlobalStyle"
+
 import { AuthProvider } from "./context/auth"
 
 const theme: DefaultTheme = {

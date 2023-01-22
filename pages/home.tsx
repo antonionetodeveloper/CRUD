@@ -1,13 +1,15 @@
 import axios from "axios"
 import Head from "next/head"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+
+import { Header, Main } from "../styles/home"
 import { Button } from "../components/button"
 import { CardInfo } from "../components/cardInfo"
-import { Header, Main } from "../styles/home"
 
 export default function Home() {
-	// tentar usar o getStaticProps
+	const router = useRouter()
 
 	const [name, setName] = useState("")
 	const [lastName, setLastName] = useState("")
@@ -40,7 +42,7 @@ export default function Home() {
 			})
 			.catch((error) => {
 				console.log(error)
-				window.location.href = url + "entrar"
+				router.push("/entrar")
 			})
 	}
 

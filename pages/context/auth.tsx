@@ -1,31 +1,20 @@
-import { createContext, useState, useEffect } from "react"
+import { createContext, useEffect, useState } from "react"
+import md5 from "md5"
 
-interface AuthContextData {
-	loading: boolean
-	keyToken: string
-}
-
-const AuthContext = createContext<AuthContextData>({} as AuthContextData)
+export const AuthContext = createContext({} as any)
 
 export function AuthProvider({ children }: any) {
-	const [loading, setLoading] = useState(true)
-	const [keyToken, setKeyToken] = useState<string>("")
+	const [keyToken, setKeyToken] = useState("NoKeyToken")
 
 	useEffect(() => {
-		getToken()
-	}, [])
-
-	async function getToken() {
-		try {
-			const token = await localStorage.getItem("token")
-			setKeyToken(token)
-		} catch (e: any) {
-			console.log(e)
+		if (keyToken == "NoKeyToken" && typeof localStorage != undefined) {
+			if (localStorage.getItem("token")) {
+				setKeyToken(localStorage.getItem("token"))
+			}
 		}
-	}
-
+	}, [])
 	return (
-		<AuthContext.Provider value={{ loading, keyToken }}>
+		<AuthContext.Provider value={{ keyToken, setKeyToken }}>
 			{children}
 		</AuthContext.Provider>
 	)

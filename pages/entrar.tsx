@@ -1,18 +1,22 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Head from "next/head"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { useState } from "react"
+
 import { Main } from "../styles/entrar"
 import { Input } from "../components/input"
 import { Button } from "../components/button"
+
 import axios from "axios"
 
 export default function Entrar() {
+	const router = useRouter()
+
 	const [login, setLogin] = useState("")
 	const [password, setPassword] = useState("")
 
 	const [textError, setTextError] = useState("")
-
 	const [isLoading, setIsLoading] = useState(false)
 
 	async function logIn() {
@@ -28,10 +32,11 @@ export default function Entrar() {
 				.then(function (response) {
 					setLogin("")
 					setPassword("")
+
 					const token = response.data.token
 					localStorage.setItem("token", token)
-					window.location.href = url + "home"
-					// router DOM nextjs
+
+					router.push("/home")
 				})
 				.catch(function (error) {
 					setTextError(error.response.data.error)
