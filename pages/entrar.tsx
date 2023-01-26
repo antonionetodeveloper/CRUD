@@ -2,6 +2,7 @@
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
+
 import { useState } from "react"
 
 import { Main } from "../styles/entrar"
@@ -9,6 +10,9 @@ import { Input } from "../components/input"
 import { Button } from "../components/button"
 
 import axios from "axios"
+import { setCookie } from "nookies"
+
+import { URL_DEVELOPMENT } from "./_document"
 
 export default function Entrar() {
 	const router = useRouter()
@@ -22,10 +26,10 @@ export default function Entrar() {
 	async function logIn() {
 		if (checkFields()) {
 			setIsLoading(true)
-			//const url = "https://crud-antonio-neto.vercel.app/"
-			const url = "http://localhost:3000/"
+
+			//const { URL_DEVELOPMENT } = process.env
 			await axios
-				.post(url + "api/login", {
+				.post(URL_DEVELOPMENT + "api/login", {
 					login: login,
 					password: password,
 				})
@@ -34,7 +38,10 @@ export default function Entrar() {
 					setPassword("")
 
 					const token = response.data.token
-					localStorage.setItem("token", token)
+					setCookie(null, "token", token, {
+						maxAge: 86400, // 1 day = 86400 sec
+						path: "/",
+					})
 
 					router.push("/home")
 				})

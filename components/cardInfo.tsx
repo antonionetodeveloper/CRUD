@@ -30,6 +30,7 @@ export const CardInfo = (props) => {
 						field={"Email:"}
 						changer={props.email}
 						redirectTo={"/configuracoes/alterar-email"}
+						isVerificated={props.emailVarificatedStatus}
 					/>
 				) : (
 					<></>
@@ -85,9 +86,17 @@ const Changer = (props) => {
 						Mudar
 					</a>
 				</Link>
+			) : props.isVerificated == "NotVerificated" ? (
+				<Link href="/configuracoes/confirmar-email">
+					<a href="/configuracoes/confirmar-email">
+						<p>Confirmar</p>
+					</a>
+				</Link>
 			) : (
 				<Link href={props.redirectTo}>
-					<a href={props.redirectTo}>Mudar</a>
+					<a href={props.redirectTo}>
+						<p>Mudar</p>
+					</a>
 				</Link>
 			)}
 		</div>
@@ -118,7 +127,7 @@ const Container = styled.section`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 3vw;
+		gap: 1vw;
 
 		div {
 			width: 35vw;

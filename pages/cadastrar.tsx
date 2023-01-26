@@ -2,6 +2,7 @@
 import Head from "next/head"
 import Link from "next/link"
 import axios from "axios"
+import { useRouter } from "next/router"
 
 import { useState, useEffect } from "react"
 
@@ -9,7 +10,11 @@ import { Main } from "../styles/cadastrar"
 import { Input } from "../components/input"
 import { Button } from "../components/button"
 
+import { URL_DEVELOPMENT } from "./_document"
+
 export default function Cadastrar() {
+	const router = useRouter()
+
 	const [name, setName] = useState("")
 	const [lastName, setLastName] = useState("")
 
@@ -37,23 +42,19 @@ export default function Cadastrar() {
 	async function createAccount() {
 		if (checkFields()) {
 			setIsLoading(true)
-			//const url = "http://localhost:3000/"
-			const url = "https://crud-antonio-neto.vercel.app/"
+
 			await axios
-				.post(url + "api/cadastro", {
+				.post(URL_DEVELOPMENT + "api/cadastro", {
 					name: name,
 					lastName: lastName,
 					email: email,
-					security: "nothing",
 					login: login,
 					password: password,
 				})
-				.then(function (response) {
-					console.log(response)
-					window.location.href = url + "entrar"
+				.then(function () {
+					router.push("/entrar")
 				})
 				.catch(function (error) {
-					console.log(error)
 					setTextError(error.response.data.error)
 				})
 

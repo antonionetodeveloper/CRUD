@@ -14,6 +14,8 @@ const userEndpoint = async (
 		const user = await UserModel.findById(userId)
 		user.login = null
 		user.password = null
+		user.answear = null
+		user.security = null
 		return res.status(200).json(user)
 	} catch (error) {
 		console.log(error)

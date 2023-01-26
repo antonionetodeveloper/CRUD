@@ -23,3 +23,6 @@ export default class MyDocument extends Document {
 		}
 	}
 }
+
+/* export const URL_DEVELOPMENT = "https://crud-antonio-neto.vercel.app/" */
+export const URL_DEVELOPMENT = "http://localhost:3000/"

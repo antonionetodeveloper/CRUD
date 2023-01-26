@@ -1,74 +1,84 @@
-import { useEffect, useState } from "react"
-import styled from "styled-components"
 import axios from "axios"
+import { useRouter } from "next/router"
+import { parseCookies } from "nookies"
+
+import { useEffect, useState } from "react"
+
+import styled from "styled-components"
 import { Input } from "../../components/input"
 import { Button } from "../../components/button"
+import { URL_DEVELOPMENT } from "../_document"
 
-export default function AlteraSobreNome() {
-	const [lastName, setlastName] = useState("")
+export async function getServerSideProps(context: any) {
+	const cookies = parseCookies(context)
+
+	const data = await fetch(URL_DEVELOPMENT + "api/usuario", {
+		headers: {
+			Authorization: `Bearer ${cookies.token}`,
+		},
+	})
+
+	const response = await data.json()
+
+	if (typeof cookies.token == "undefined") {
+		return {
+			props: { data: response, token: null },
+		}
+	}
+
+	return {
+		props: { data: response, token: cookies.token },
+	}
+}
+
+export default function AlteraSobreNome({ data, token }: any) {
+	const router = useRouter()
+
+	const lastName = data.lastName
 	const [newlastName, setNewlastName] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
-		if (window) {
-			getInformation()
+		if (data.error) {
+			router.push("/entrar")
 		}
 	}, [])
 
-	async function getInformation() {
-		const reqInstance = axios.create({
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem("token")}`,
-			},
-		})
-		const url = "https://crud-antonio-neto.vercel.app/"
-		//const url = "http://localhost:3000/"
-		await reqInstance
-			.get(url + "api/usuario")
-			.then((response) => {
-				setlastName(response.data.lastName)
-			})
-			.catch((error) => {
-				console.log(error)
-				window.location.href = url + "entrar"
-			})
-	}
-
-	async function updateInformation() {
-		const reqInstance = axios.create({
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem("token")}`,
-			},
-		})
-		const url = "https://crud-antonio-neto.vercel.app/"
-		//const url = "http://localhost:3000/"
-		await reqInstance
-			.put(url + "api/updates/sobre_nome", { lastName: newlastName })
-			.then((response) => {
-				window.location.href = url + "home"
-				alert("Sobrenome alterado com sucesso.")
-				setIsLoading(false)
-				setlastName(response.data.lastName)
-			})
-			.catch((error) => {
-				console.log(error)
-				window.location.href = url + "entrar"
-			})
-	}
-
-	function setUpUpdate() {
+	function updateHandle() {
 		setIsLoading(true)
-		if (newlastName === "" || newlastName.length < 2) {
-			alert("ai não dá né campeão...")
+		if (
+			newlastName === "" ||
+			newlastName.length < 2 ||
+			newlastName == lastName
+		) {
+			alert("Não foi possível alterar seu sobrenome.")
 		} else {
 			updateInformation()
 		}
 	}
 
-	const keyPressed = (event) => {
+	async function updateInformation() {
+		const reqInstance = axios.create({
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+
+		await reqInstance
+			.put(URL_DEVELOPMENT + "api/updates/sobre_nome", {
+				lastName: newlastName,
+			})
+			.then(() => {
+				alert("Sobrenome alterado com sucesso.")
+				setIsLoading(false)
+				router.push("/home")
+			})
+	}
+
+	const keyPressed = (event: any) => {
 		if (event.key == "Enter") {
 			event.preventDefault()
-			setUpUpdate()
+			updateHandle()
 		}
 	}
 
@@ -94,7 +104,7 @@ export default function AlteraSobreNome() {
 						Text="Confirmar"
 						isLoading={isLoading}
 						clicked={() => {
-							setUpUpdate()
+							updateHandle()
 						}}
 					/>
 				</form>
