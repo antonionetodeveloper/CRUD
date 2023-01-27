@@ -48,8 +48,6 @@ export default function Entrar() {
 				.catch(function (error) {
 					setTextError(error.response.data.error)
 				})
-
-			setIsLoading(false)
 		}
 	}
 
