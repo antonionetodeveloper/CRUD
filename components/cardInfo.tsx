@@ -127,7 +127,7 @@ const Container = styled.section`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 1vw;
+		gap: 2vw;
 
 		div {
 			width: 35vw;

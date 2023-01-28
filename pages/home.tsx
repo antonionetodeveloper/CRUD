@@ -46,7 +46,7 @@ export default function Home({ data }: any) {
 		if (data.verificatedEmail) {
 			setIsVerificated("Verificated")
 		}
-		if (data.security != "No questions yet") {
+		if (data.security == "No questions yet") {
 			setSecurity("Ativado")
 		}
 	}
