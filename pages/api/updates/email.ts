@@ -16,10 +16,6 @@ const handler = nextConnect().put(
 				res.status(400).json({ error: "Usuário não encontrado." })
 			}
 
-			user.login = null
-			user.password = null
-			user.answear = null
-
 			const { newEmail } = req.body
 
 			if (

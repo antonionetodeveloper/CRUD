@@ -80,6 +80,7 @@ export default function Page({ data, token }: any) {
 		if (event.key == "Enter") {
 			event.preventDefault()
 			updateInformation()
+			setIsLoading(true)
 		}
 	}
 
