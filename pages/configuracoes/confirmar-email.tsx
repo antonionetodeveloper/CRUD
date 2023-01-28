@@ -56,6 +56,8 @@ export default function Page({ data, token }: any) {
 	}, [])
 
 	async function updateInformation() {
+		setIsLoading(true)
+
 		const reqInstance = axios.create({
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -79,7 +81,6 @@ export default function Page({ data, token }: any) {
 	const keyPressed = (event: any) => {
 		if (event.key == "Enter") {
 			event.preventDefault()
-			setIsLoading(true)
 			updateInformation()
 		}
 	}
