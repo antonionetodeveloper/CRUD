@@ -5,7 +5,7 @@ import Link from "next/link"
 
 import { useEffect, useState } from "react"
 
-import { Container } from "./style"
+import { Container } from "../../styles/alterations-config"
 import { Button } from "../../components/button"
 import { Input } from "../../components/input"
 

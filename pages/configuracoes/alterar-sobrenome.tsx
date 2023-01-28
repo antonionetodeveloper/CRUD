@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 
 import { Input } from "../../components/input"
 import { Button } from "../../components/button"
-import { Container } from "./style"
+import { Container } from "../../styles/alterations-config"
 
 import { URL_DEVELOPMENT } from "../_document"
 

@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 
 import { useEffect, useState } from "react"
 
-import { Container } from "./style"
+import { Container } from "../../styles/alterations-config"
 
 import { URL_DEVELOPMENT } from "../_document"
 import { Button } from "../../components/button"
