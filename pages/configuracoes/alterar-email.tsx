@@ -1,15 +1,14 @@
 import axios from "axios"
 import { parseCookies } from "nookies"
 import { useRouter } from "next/router"
-import Link from "next/link"
 
 import { useEffect, useState } from "react"
 
 import { Container } from "./style"
-import { Button } from "../../components/button"
-import { Input } from "../../components/input"
 
 import { URL_DEVELOPMENT } from "../_document"
+import { Button } from "../../components/button"
+import { Input } from "../../components/input"
 
 export async function getServerSideProps(context) {
 	const cookies = parseCookies(context)
@@ -19,16 +18,6 @@ export async function getServerSideProps(context) {
 			Authorization: `Bearer ${cookies.token}`,
 		},
 	})
-
-	await axios.post(
-		URL_DEVELOPMENT + "api/updates/sendSecurityCode",
-		{},
-		{
-			headers: {
-				Authorization: `Bearer ${cookies.token}`,
-			},
-		},
-	)
 
 	const response = await data.json()
 
@@ -47,13 +36,22 @@ export default function Page({ data, token }: any) {
 	const router = useRouter()
 	const [isLoading, setIsLoading] = useState(false)
 	const [textError, setTextError] = useState("")
-	const [securityCode, setSecurityCode] = useState() as any
+	const [newEmail, setNewEmail] = useState() as any
 
 	useEffect(() => {
 		if (data.error) {
 			router.push("/entrar")
 		}
 	}, [])
+
+	function updateHandle() {
+		setIsLoading(true)
+		if (newEmail === "" || newEmail.length < 2 || newEmail == data.email) {
+			alert("Não foi possível alterar seu sobrenome.")
+		} else {
+			updateInformation()
+		}
+	}
 
 	async function updateInformation() {
 		const reqInstance = axios.create({
@@ -63,11 +61,11 @@ export default function Page({ data, token }: any) {
 		})
 
 		await reqInstance
-			.put(URL_DEVELOPMENT + "api/updates/confirm_email", {
-				inputedHashByUser: securityCode,
+			.put(URL_DEVELOPMENT + "api/updates/email", {
+				newEmail: newEmail,
 			})
 			.then(() => {
-				alert("Email confirmado com suesso.")
+				alert("Email alterado com suceesso.")
 				router.push("/home")
 			})
 			.catch(function (error) {
@@ -79,15 +77,14 @@ export default function Page({ data, token }: any) {
 	const keyPressed = (event: any) => {
 		if (event.key == "Enter") {
 			event.preventDefault()
-			updateInformation()
+			updateHandle()
 		}
 	}
 
 	return (
 		<Container>
 			<header>
-				<h3>Confirme seu email</h3>
-				<p>Um código de verificação foi enviado para seu email.</p>
+				<h3>Alterar o email</h3>
 			</header>
 			<main onKeyDown={keyPressed}>
 				<form>
@@ -97,9 +94,9 @@ export default function Page({ data, token }: any) {
 						</span>
 						<Input
 							className="Input "
-							Text="Código de verificação"
+							Text="Novo email"
 							Type="text"
-							comeBack={setSecurityCode}
+							comeBack={setNewEmail}
 						/>
 					</div>
 					{textError != "" ? (
@@ -107,7 +104,7 @@ export default function Page({ data, token }: any) {
 							Text="Confirmar"
 							isLoading={isLoading}
 							clicked={() => {
-								updateInformation()
+								updateHandle()
 							}}
 							Wrong
 						/>
@@ -116,7 +113,7 @@ export default function Page({ data, token }: any) {
 							Text="Confirmar"
 							isLoading={isLoading}
 							clicked={() => {
-								updateInformation()
+								updateHandle()
 							}}
 						/>
 					)}
@@ -128,13 +125,6 @@ export default function Page({ data, token }: any) {
 						<></>
 					)}
 				</form>
-				<p className="misstake">
-					Digitou seu email errado?{" "}
-					<Link href="/configuracoes/alterar-email">
-						<a href="/configuracoes/alterar-email">Altere aqui</a>
-					</Link>
-					.
-				</p>
 			</main>
 		</Container>
 	)
