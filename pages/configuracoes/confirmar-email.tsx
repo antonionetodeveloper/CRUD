@@ -79,8 +79,8 @@ export default function Page({ data, token }: any) {
 	const keyPressed = (event: any) => {
 		if (event.key == "Enter") {
 			event.preventDefault()
-			updateInformation()
 			setIsLoading(true)
+			updateInformation()
 		}
 	}
 
