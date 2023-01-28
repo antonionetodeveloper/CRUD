@@ -46,6 +46,7 @@ export default function Entrar() {
 				})
 				.catch(function (error) {
 					setTextError(error.response.data.error)
+					setIsLoading(false)
 				})
 		}
 	}
@@ -84,13 +85,24 @@ export default function Entrar() {
 						<p>{textError}</p>
 						<Input Text="Login" Type="text" comeBack={setLogin} />
 						<Input Text="Senha" Type="password" comeBack={setPassword} />
-						<Button
-							Text="Continuar"
-							isLoading={isLoading}
-							clicked={() => {
-								logIn()
-							}}
-						/>
+						{textError != "" ? (
+							<Button
+								Text="Continuar"
+								isLoading={isLoading}
+								clicked={() => {
+									logIn()
+								}}
+								Wrong
+							/>
+						) : (
+							<Button
+								Text="Continuar"
+								isLoading={isLoading}
+								clicked={() => {
+									logIn()
+								}}
+							/>
+						)}
 					</form>
 					<div className="navigation">
 						<Link href={"/"}>
