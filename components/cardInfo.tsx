@@ -40,6 +40,7 @@ export const CardInfo = (props) => {
 						field={"Segurança:"}
 						changer={props.security}
 						redirectTo={"/configuracoes/alterar-seguranca"}
+						isAllowedToChange={props.emailVarificatedStatus}
 					/>
 				) : (
 					<></>
@@ -90,6 +91,17 @@ const Changer = (props) => {
 				<Link href="/configuracoes/confirmar-email">
 					<a href="/configuracoes/confirmar-email">
 						<p>Confirmar</p>
+					</a>
+				</Link>
+			) : props.isAllowedToChange == "NotVerificated" ? (
+				<Link href="#">
+					<a
+						href="#"
+						onClick={() => {
+							alert("Confirme seu email primeiro.")
+						}}
+					>
+						<p>Mudar</p>
 					</a>
 				</Link>
 			) : (
