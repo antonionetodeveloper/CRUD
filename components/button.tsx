@@ -32,6 +32,7 @@ export const Button = (props) => {
 const Container: any = styled.button`
 	/* From uiverse.io by @adamgiebl */
 	& {
+		z-index: 2;
 		background-color: ${(props: any): any => {
 			if (props.wrongButton) {
 				return "#f00"

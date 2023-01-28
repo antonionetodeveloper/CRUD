@@ -27,7 +27,6 @@ export default function Entrar() {
 		if (checkFields()) {
 			setIsLoading(true)
 
-			//const { URL_DEVELOPMENT } = process.env
 			await axios
 				.post(URL_DEVELOPMENT + "api/login", {
 					login: login,

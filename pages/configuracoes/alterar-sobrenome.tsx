@@ -1,12 +1,13 @@
 import axios from "axios"
-import { useRouter } from "next/router"
 import { parseCookies } from "nookies"
+import { useRouter } from "next/router"
 
 import { useEffect, useState } from "react"
 
-import styled from "styled-components"
 import { Input } from "../../components/input"
 import { Button } from "../../components/button"
+import { Container } from "./style"
+
 import { URL_DEVELOPMENT } from "../_document"
 
 export async function getServerSideProps(context: any) {
@@ -112,53 +113,3 @@ export default function AlteraSobreNome({ data, token }: any) {
 		</Container>
 	)
 }
-
-const Container = styled.div`
-	header {
-		height: 10vh;
-		h3 {
-			color: white;
-			text-align: center;
-			font-size: 2em;
-			font-weight: 900;
-			margin: 0px;
-			padding: 2.5vw;
-		}
-	}
-	main {
-		width: 70vw;
-		height: 50vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin: auto;
-		margin-top: 10vw;
-		background-color: white;
-		border-radius: 2vw;
-		form {
-			display: flex;
-			gap: 5vw;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			div.fields {
-				width: 70vw;
-				display: flex;
-				justify-content: center;
-				gap: 5vw;
-				align-items: center;
-				.span,
-				.Input {
-					width: 15vw;
-				}
-
-				span.span {
-					font-weight: 700;
-					font-size: 1.1em;
-					text-align: center;
-				}
-			}
-		}
-	}
-`
