@@ -60,7 +60,7 @@ const Container: any = styled.button`
 			}};
 		overflow: hidden;
 		position: relative;
-		height: 2.8em;
+		min-height: 2.8em;
 		padding-right: 3.3em;
 	}
 	& .icon {
@@ -70,7 +70,7 @@ const Container: any = styled.button`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 2.2em;
+		min-height: 2.2em;
 		width: 2.2em;
 		border-radius: 0.7em;
 		box-shadow: 0.1em 0.1em 0.6em 0.2em
