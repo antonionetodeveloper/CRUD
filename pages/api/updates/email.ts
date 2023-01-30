@@ -17,6 +17,7 @@ const handler = nextConnect().put(
 			}
 
 			const { newEmail } = req.body
+			const { security } = req.body
 
 			if (
 				!newEmail ||
@@ -25,6 +26,20 @@ const handler = nextConnect().put(
 				!newEmail.includes(".")
 			) {
 				return res.status(400).json({ error: "Email inválido." })
+			}
+
+			if (
+				user.questionSecurity == "No questions yet" &&
+				user.verificatedEmail
+			) {
+				return res.status(400).json({ error: 'Crie uma "Segurança" antes.' })
+			}
+
+			if (
+				security != user.answear &&
+				user.questionSecurity != "No questions yet"
+			) {
+				return res.status(400).json({ error: "Código de segurança inválido." })
 			}
 
 			const repeatedEmails = await UserModel.find({ email: newEmail })

@@ -37,6 +37,7 @@ export default function Page({ data, token }: any) {
 	const [isLoading, setIsLoading] = useState(false)
 	const [textError, setTextError] = useState("")
 	const [newEmail, setNewEmail] = useState() as any
+	const [security, setSecurity] = useState()
 
 	useEffect(() => {
 		if (data.error) {
@@ -63,6 +64,7 @@ export default function Page({ data, token }: any) {
 		await reqInstance
 			.put(URL_DEVELOPMENT + "api/updates/email", {
 				newEmail: newEmail,
+				security: security,
 			})
 			.then(() => {
 				alert("Email alterado com suceesso.")
@@ -89,15 +91,40 @@ export default function Page({ data, token }: any) {
 			<main onKeyDown={keyPressed}>
 				<form>
 					<div className="fields">
-						<span className="span">
-							O seu email atual é &quot;{data.email}&quot;
-						</span>
-						<Input
-							className="Input "
-							Text="Novo email"
-							Type="text"
-							comeBack={setNewEmail}
-						/>
+						<div>
+							<span className="span">
+								O seu email atual é &quot;{data.email}&quot;
+							</span>
+						</div>
+						<div style={{ height: "15vh", zIndex: "2" }}>
+							<Input
+								className="Input "
+								Text="Novo email"
+								Type="text"
+								comeBack={setNewEmail}
+							/>
+						</div>
+						{data.questionSecurity != "No questions yet" ? (
+							<div style={{ height: "15vh" }}>
+								<Input
+									className="Input "
+									Text="Segurança"
+									Type="text"
+									comeBack={setSecurity}
+								/>
+								<p
+									style={{
+										margin: "10px",
+										position: "absolute",
+										bottom: "18vh",
+									}}
+								>
+									{data.questionSecurity}
+								</p>
+							</div>
+						) : (
+							<></>
+						)}
 					</div>
 					{textError != "" ? (
 						<Button
@@ -118,7 +145,7 @@ export default function Page({ data, token }: any) {
 						/>
 					)}
 					{textError != "" ? (
-						<div className="errorDiv">
+						<div className="errorDiv" style={{ height: "37vh" }}>
 							<span>{textError}</span>
 						</div>
 					) : (
