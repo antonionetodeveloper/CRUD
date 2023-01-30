@@ -65,7 +65,7 @@ export default function Page({ data, token }: any) {
 		})
 
 		await reqInstance
-			.put(URL_DEVELOPMENT + "api/updates/confirm_email", {
+			.put(URL_DEVELOPMENT + "api/updates/email/confirm_email", {
 				inputedHashByUser: securityCode,
 			})
 			.then(() => {
