@@ -14,9 +14,12 @@ export const ConnectDB =
 		else {
 			const { DB_CONECT_STRING } = process.env
 			if (!DB_CONECT_STRING) {
-				return res
-					.status(500)
-					.json({ error: "dados da '.env' não foram informadas!" })
+				return res.status(500).json({
+					error:
+						"dados da '.env' não foram informadas! " +
+						typeof DB_CONECT_STRING +
+						DB_CONECT_STRING,
+				})
 			} else {
 				mongoose.connection.on("connected", () => {
 					console.log("Conectado ao banco de dados.")
