@@ -48,7 +48,7 @@ export default function Page({ data, token }: any) {
 	function updateHandle() {
 		setIsLoading(true)
 		if (newEmail === "" || newEmail.length < 2 || newEmail == data.email) {
-			alert("Não foi possível alterar seu sobrenome.")
+			alert("Não foi possível alterar seu email.")
 		} else {
 			updateInformation()
 		}
