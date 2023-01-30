@@ -93,12 +93,33 @@ const Changer = (props) => {
 						<p>Confirmar</p>
 					</a>
 				</Link>
-			) : props.isAllowedToChange == "NotVerificated" ? (
+			) : props.isAllowedToChange == "NotVerificated" &&
+			  props.changer == "Desativado" ? (
 				<Link href="#">
 					<a
 						href="#"
 						onClick={() => {
 							alert("Confirme seu email primeiro.")
+						}}
+					>
+						<p>Criar</p>
+					</a>
+				</Link>
+			) : props.changer == "Desativado" ? (
+				<Link href={"/configuracoes/criar-seguranca"}>
+					<a href={"/configuracoes/criar-seguranca"}>
+						<p>Criar</p>
+					</a>
+				</Link>
+			) : props.isAllowedToChange == "NotVerificated" &&
+			  props.changer == "Ativado" ? (
+				<Link href="#">
+					<a
+						href="#"
+						onClick={() => {
+							alert(
+								"Seu email deve estar verificado para ser possível trocar a segurança.",
+							)
 						}}
 					>
 						<p>Mudar</p>
@@ -139,13 +160,15 @@ const Container = styled.section`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 2vw;
+		gap: 1vw;
 
 		div {
-			width: 35vw;
+			width: 30vw;
+			height: 7vh;
 
 			display: grid;
 			justify-content: center;
+			align-items: center;
 			grid-template-columns: auto auto auto;
 			gap: 1vw;
 

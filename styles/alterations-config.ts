@@ -30,7 +30,7 @@ export const Container = styled.div`
 		background-color: white;
 		border-radius: 2vw;
 		form {
-			height: 20vh;
+			height: 40vh;
 			display: flex;
 			gap: 3vw;
 			flex-direction: column;
@@ -42,11 +42,18 @@ export const Container = styled.div`
 				width: 70vw;
 				display: flex;
 				justify-content: center;
-				gap: 8vw;
 				align-items: center;
+				gap: 8vw;
 				.span,
 				.Input {
 					width: 15vw;
+				}
+
+				div {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
 				}
 
 				span.span {
@@ -74,8 +81,6 @@ export const Container = styled.div`
 
 		p.misstake {
 			font-weight: 500;
-			position: relative;
-			top: 3vw;
 		}
 	}
 `

@@ -24,7 +24,7 @@ export const Header = styled.header`
 `
 
 export const Main = styled.main`
-	min-height: 70vh;
+	height: 65vh;
 
 	display: flex;
 	justify-content: center;
