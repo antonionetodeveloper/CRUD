@@ -62,7 +62,7 @@ export default function Page({ data, token }: any) {
 		})
 
 		await reqInstance
-			.put(URL_DEVELOPMENT + "api/updates/email", {
+			.put(URL_DEVELOPMENT + "api/updates/email/email", {
 				newEmail: newEmail,
 				security: security,
 			})

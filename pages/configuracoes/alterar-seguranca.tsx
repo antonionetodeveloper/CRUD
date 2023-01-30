@@ -56,7 +56,7 @@ export default function Page({ data, token }: any) {
 		})
 
 		await reqInstance
-			.put(URL_DEVELOPMENT + "api/updates/security", {
+			.put(URL_DEVELOPMENT + "api/updates/security/security", {
 				securityCode: security,
 				securityNewQuestion: question,
 				securityNewAnswear: answear,
@@ -81,11 +81,8 @@ export default function Page({ data, token }: any) {
 	return (
 		<Container>
 			<header>
-				<h3>Criar segurança</h3>
-				<p>
-					A resposta da pergunta é extremamente crucial para sua seguranca, faça
-					tudo atentamente.
-				</p>
+				<h3>Atualizar segurança</h3>
+				<p>Um código de segurança foi enviado para seu email.</p>
 			</header>
 			<main onKeyDown={keyPressed}>
 				<form>

@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
 	})
 
 	await axios.post(
-		URL_DEVELOPMENT + "api/updates/sendSecurityCode",
+		URL_DEVELOPMENT + "api/updates/email/sendSecurityCode",
 		{},
 		{
 			headers: {

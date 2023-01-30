@@ -55,7 +55,7 @@ export default function Page({ data, token }: any) {
 		})
 
 		await reqInstance
-			.put(URL_DEVELOPMENT + "api/updates/createSecurity", {
+			.put(URL_DEVELOPMENT + "api/updates/security/createSecurity", {
 				securityQuestion: question,
 				securityAnswear: answear,
 			})
