@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-unsafe-optional-chaining */
-import { ConnectDB } from "./../../../middlewares/conncetDB"
-import { validateTokenJWT } from "./../../../middlewares/validateTokenJWT"
-import { UserModel } from "./../../../models/UserModel"
+import { ConnectDB } from "../../../../middlewares/conncetDB"
+import { validateTokenJWT } from "../../../../middlewares/validateTokenJWT"
+import { UserModel } from "../../../../models/UserModel"
 import { NextApiResponse } from "next"
 import { NextApiRequest } from "next"
 import nextConnect from "next-connect"
