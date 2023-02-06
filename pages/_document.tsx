@@ -24,5 +24,5 @@ export default class MyDocument extends Document {
 	}
 }
 
-export const URL_DEVELOPMENT: string = process.env.API_ACCESS_URL
+export const URL_DEVELOPMENT: string = process.env.NEXT_PUBLIC_API_ACCESS_URL
 // export const URL_DEVELOPMENT = "http://localhost:3000/"
