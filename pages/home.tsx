@@ -38,7 +38,6 @@ export default function Home({ data }: any) {
 			router.push("/entrar")
 		} else {
 			checkInformations()
-			console.log(data)
 		}
 	}, [])
 
