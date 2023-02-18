@@ -26,7 +26,6 @@ export default function Entrar() {
 	async function logIn() {
 		if (checkFields()) {
 			setIsLoading(true)
-			console.log(URL_DEVELOPMENT)
 
 			await axios
 				.post(URL_DEVELOPMENT + "api/login", {
