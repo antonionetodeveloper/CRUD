@@ -99,7 +99,7 @@ Quer contribuir? Toda a ajuda é bem-vinda aqui!
 
 Você pode me ajudar das maneiras mais comuns, como abrir uma `issue` ou fazer um `fork` e posteriormente um `pull-request`. 
 
-Ficare muito feliz em ouvir sua opinião ou sugestão, por isso **não hesite**!
+Ficarei muito feliz em ouvir sua opinião ou sugestão, por isso **não hesite**!
 
 
 ## License
