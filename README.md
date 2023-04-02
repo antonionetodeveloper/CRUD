@@ -46,7 +46,8 @@ Tecnologias utilizadas neste projeto:
 
 ## Instalação
 
-CRUD requer [Node.js](https://nodejs.org/) v10+ para funcionar.
+> **Warning**
+>: CRUD requer [node.js](https://nodejs.org/) v10+ para funcionar, caso não tenha, instale antes.
 
 Crie uma pasta para organizar seu projeto:
 ```sh
@@ -54,7 +55,7 @@ mkdir CRUD
 cd CRUD
 ```
 
-Clone o repositório remoto em sua máquina remota:
+Clone o repositório remoto em sua máquina local:
 ```sh
 git clone https://github.com/antonionetodeveloper/CRUD
 ```
@@ -66,7 +67,7 @@ npm run dev
 ```
 
 ## Variáveis de ambiente
-Você pode ver todas as variaveis existente no arquiv *`.env.exemple`*, mas atente-se aos seguintes detalhes:
+Você pode ver todas as variaveis existente no arquivo *`.env.exemple`*, mas atente-se aos seguintes detalhes:
 
 #### Variáveis do back-end
 ```env
